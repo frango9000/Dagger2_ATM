@@ -27,6 +27,7 @@
           <entry name="$MAVEN_REPOSITORY$/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar" />
           <entry name="$MAVEN_REPOSITORY$/net/ltgt/gradle/incap/incap/0.2/incap-0.2.jar" />
         </processorPath>
+        <module name="Dagger2_ATM" />
         <module name="daggertest" />
       </profile>
     </annotationProcessing>

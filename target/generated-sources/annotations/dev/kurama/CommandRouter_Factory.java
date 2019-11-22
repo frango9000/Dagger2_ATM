@@ -13,23 +13,22 @@ import javax.inject.Provider;
     "rawtypes"
 })
 public final class CommandRouter_Factory implements Factory<CommandRouter> {
-  private final Provider<HelloWorldCommand> helloWorldCommandProvider;
+  private final Provider<Command> commandProvider;
 
-  public CommandRouter_Factory(Provider<HelloWorldCommand> helloWorldCommandProvider) {
-    this.helloWorldCommandProvider = helloWorldCommandProvider;
+  public CommandRouter_Factory(Provider<Command> commandProvider) {
+    this.commandProvider = commandProvider;
   }
 
   @Override
   public CommandRouter get() {
-    return new CommandRouter(helloWorldCommandProvider.get());
+    return new CommandRouter(commandProvider.get());
   }
 
-  public static CommandRouter_Factory create(
-      Provider<HelloWorldCommand> helloWorldCommandProvider) {
-    return new CommandRouter_Factory(helloWorldCommandProvider);
+  public static CommandRouter_Factory create(Provider<Command> commandProvider) {
+    return new CommandRouter_Factory(commandProvider);
   }
 
-  public static CommandRouter newInstance(HelloWorldCommand helloWorldCommand) {
-    return new CommandRouter(helloWorldCommand);
+  public static CommandRouter newInstance(Command command) {
+    return new CommandRouter(command);
   }
 }

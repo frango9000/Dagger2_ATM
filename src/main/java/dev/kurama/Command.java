@@ -7,7 +7,7 @@ public interface Command {
     /**
      * String token that signifies this command should be selected (e.g.: "deposit", "withdraw")
      */
-    String key();
+//    String key();
 
     /**
      * Process the rest of the command's words and do something.

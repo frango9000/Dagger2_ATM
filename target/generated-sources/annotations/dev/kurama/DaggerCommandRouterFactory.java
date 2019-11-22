@@ -1,5 +1,7 @@
 package dev.kurama;
 
+import com.google.common.collect.ImmutableMap;
+import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated(
@@ -23,9 +25,18 @@ public final class DaggerCommandRouterFactory implements CommandRouterFactory {
     return new Builder().build();
   }
 
+  private HelloWorldCommand getHelloWorldCommand() {
+    return new HelloWorldCommand(SystemOutModule_TextOutputterFactory.textOutputter());}
+
+  private LoginCommand getLoginCommand() {
+    return new LoginCommand(SystemOutModule_TextOutputterFactory.textOutputter());}
+
+  private Map<String, Command> getMapOfStringAndCommand() {
+    return ImmutableMap.<String, Command>of("hello", getHelloWorldCommand(), "login", getLoginCommand());}
+
   @Override
   public CommandRouter router() {
-    return new CommandRouter(new HelloWorldCommand());}
+    return new CommandRouter(getMapOfStringAndCommand());}
 
   public static final class Builder {
     private Builder() {

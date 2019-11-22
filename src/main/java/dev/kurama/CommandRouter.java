@@ -2,17 +2,17 @@ package dev.kurama;
 
 import dev.kurama.Command.Status;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
 
 public final class CommandRouter {
 
-    private final HashMap<String, Command> commands = new HashMap<>();
+    private final Map<String, Command> commands;
 
     @Inject
-    public CommandRouter(Command command) {
-        commands.put(command.key(), command);
+    public CommandRouter(Map<String, Command> commands) {
+        this.commands = commands;
     }
 
     Status route(String input) {

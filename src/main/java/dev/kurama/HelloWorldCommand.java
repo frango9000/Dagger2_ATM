@@ -5,13 +5,11 @@ import javax.inject.Inject;
 
 public class HelloWorldCommand implements Command {
 
-    @Inject
-    HelloWorldCommand() {
-    }
+    private final Outputter outputter;
 
-    @Override
-    public String key() {
-        return "hello";
+    @Inject
+    HelloWorldCommand(Outputter outputter) {
+        this.outputter = outputter;
     }
 
     @Override
@@ -19,7 +17,7 @@ public class HelloWorldCommand implements Command {
         if (!input.isEmpty()) {
             return Status.INVALID;
         }
-        System.out.println("world!");
+        outputter.output("world!");
         return Status.HANDLED;
     }
 }

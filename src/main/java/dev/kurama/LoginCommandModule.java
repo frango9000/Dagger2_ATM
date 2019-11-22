@@ -6,10 +6,10 @@ import dagger.multibindings.IntoMap;
 import dagger.multibindings.StringKey;
 
 @Module
-public abstract class HelloWorldModule {
+abstract class LoginCommandModule {
 
     @Binds
     @IntoMap
-    @StringKey("hello")
-    abstract Command helloWorldCommand(HelloWorldCommand command);
+    @StringKey("login")
+    abstract Command loginCommand(LoginCommand command);
 }
