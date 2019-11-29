@@ -5,7 +5,11 @@ import javax.inject.Singleton;
 
 @Singleton
 @Component(modules = {HelloWorldModule.class, LoginCommandModule.class, UserCommandsModule.class, SystemOutModule.class})
-public interface CommandRouterFactory {
+public interface CommandProcessorFactory {
 
-    CommandRouter router();
+    CommandProcessor commandProcessor();
+
+    static CommandProcessorFactory create() {
+        return DaggerCommandProcessorFactory.create();
+    }
 }

@@ -1,5 +1,6 @@
 package dev.kurama;
 
+import dev.kurama.Command.Result;
 import dev.kurama.Command.Status;
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +16,7 @@ public final class CommandRouter {
         this.commands = commands;
     }
 
-    Status route(String input) {
+    public Result route(String input) {
         List<String> splitInput = split(input);
         if (splitInput.isEmpty()) {
             return invalidCommand(input);
@@ -27,16 +28,14 @@ public final class CommandRouter {
             return invalidCommand(input);
         }
 
-        Status status = command.handleInput(splitInput.subList(1, splitInput.size()));
-        if (status == Status.INVALID) {
-            System.out.println(commandKey + ": invalid arguments");
-        }
-        return status;
+        List<String> args = splitInput.subList(1, splitInput.size());
+        Result result = command.handleInput(args);
+        return result.getStatus().equals(Status.INVALID) ? invalidCommand(input) : result;
     }
 
-    private Status invalidCommand(String input) {
+    private Result invalidCommand(String input) {
         System.out.println(String.format("couldn't understand \"%s\". please try again.", input));
-        return Status.INVALID;
+        return Result.invalid();
     }
 
     // Split on whitespace

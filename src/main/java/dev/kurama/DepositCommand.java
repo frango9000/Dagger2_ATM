@@ -16,12 +16,12 @@ public class DepositCommand implements Command {
     }
 
     @Override
-    public Status handleInput(List<String> input) {
-        if(input.size() != 2)
-            return Status.INVALID;
+    public Result handleInput(List<String> input) {
+        if (input.size() != 2)
+            return Result.invalid();
         Account account = database.getAccount(input.get(0));
-        account.deposit( new BigDecimal(input.get(1)));
+        account.deposit(new BigDecimal(input.get(1)));
         outputter.output(account.getUsername() + " now has: " + account.getBalance());
-        return Status.HANDLED;
+        return Result.handled();
     }
 }

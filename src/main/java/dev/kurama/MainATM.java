@@ -6,11 +6,10 @@ public class MainATM {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        CommandRouterFactory commandRouterFactory = DaggerCommandRouterFactory.create();
-        CommandRouter commandRouter = commandRouterFactory.router();
+        CommandProcessor commandProcessor = DaggerCommandProcessorFactory.create().commandProcessor();
 
         while (scanner.hasNextLine()) {
-            commandRouter.route(scanner.nextLine());
+            commandProcessor.process(scanner.nextLine());
         }
     }
 }
