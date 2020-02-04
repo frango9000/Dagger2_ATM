@@ -9,7 +9,7 @@ interface Command {
     Status handleInput(List<String> input);
 
     enum Status {
-        INVALID, HNDLED
+        INVALID, HANDLED
     }
 
 }

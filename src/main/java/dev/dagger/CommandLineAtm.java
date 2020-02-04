@@ -13,4 +13,5 @@ public class CommandLineAtm {
             commandRouter.route(scanner.nextLine());
         }
     }
+
 }
