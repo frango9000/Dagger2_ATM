@@ -2,17 +2,18 @@ package dev.dagger;
 
 import dev.dagger.Command.Status;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 
 public class CommandRouter {
 
-    private final Map<String, Command> commands = Collections.emptyMap();
+    private final Map<String, Command> commands = new HashMap<>();
 
     @Inject
-    public CommandRouter() {
+    public CommandRouter(HelloWorldCommand helloWorldCommand) {
+        commands.put(helloWorldCommand.key(), helloWorldCommand);
     }
 
     Status route(String input) {
@@ -27,8 +28,7 @@ public class CommandRouter {
             return invalidCommand(input);
         }
 
-        Status status =
-            command.handleInput(splitInput.subList(1, splitInput.size()));
+        Status status = command.handleInput(splitInput.subList(1, splitInput.size()));
         if (status == Status.INVALID) {
             System.out.println(commandKey + ": invalid arguments");
         }
@@ -36,8 +36,7 @@ public class CommandRouter {
     }
 
     private Status invalidCommand(String input) {
-        System.out.println(
-            String.format("couldn't understand \"%s\". please try again.", input));
+        System.out.println(String.format("couldn't understand \"%s\". please try again.", input));
         return Status.INVALID;
     }
 

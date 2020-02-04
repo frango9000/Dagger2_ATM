@@ -25,7 +25,7 @@ public final class DaggerCommandRouterFactory implements CommandRouterFactory {
 
   @Override
   public CommandRouter router() {
-    return new CommandRouter();}
+    return new CommandRouter(new HelloWorldCommand());}
 
   public static final class Builder {
     private Builder() {
