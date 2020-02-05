@@ -12,8 +12,8 @@ public class CommandRouter {
     private final Map<String, Command> commands = new HashMap<>();
 
     @Inject
-    public CommandRouter(HelloWorldCommand helloWorldCommand) {
-        commands.put(helloWorldCommand.key(), helloWorldCommand);
+    public CommandRouter(Command command) {
+        commands.put(command.key(), command);
     }
 
     Status route(String input) {
