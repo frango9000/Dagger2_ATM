@@ -1,8 +1,10 @@
 package dev.dagger;
 
 import dagger.Component;
+import javax.inject.Singleton;
 
-@Component(modules = {LoginCommandModule.class, HelloWorldModule.class, SystemOutModule.class})
+@Singleton
+@Component(modules = {LoginCommandModule.class, HelloWorldModule.class, SystemOutModule.class, UserCommandsModule.class})
 public interface CommandRouterFactory {
 
     CommandRouter router();
