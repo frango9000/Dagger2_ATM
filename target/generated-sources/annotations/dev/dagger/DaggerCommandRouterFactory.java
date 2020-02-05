@@ -26,7 +26,7 @@ public final class DaggerCommandRouterFactory implements CommandRouterFactory {
   }
 
   private LoginCommand getLoginCommand() {
-    return new LoginCommand(SystemOutModule_TextOutputterFactory.textOutputter());}
+    return new LoginCommand(new Database(), SystemOutModule_TextOutputterFactory.textOutputter());}
 
   private HelloWorldCommand getHelloWorldCommand() {
     return new HelloWorldCommand(SystemOutModule_TextOutputterFactory.textOutputter());}
