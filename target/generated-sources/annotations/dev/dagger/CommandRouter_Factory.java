@@ -1,6 +1,7 @@
 package dev.dagger;
 
 import dagger.internal.Factory;
+import java.util.Map;
 import javax.annotation.Generated;
 import javax.inject.Provider;
 
@@ -13,22 +14,22 @@ import javax.inject.Provider;
     "rawtypes"
 })
 public final class CommandRouter_Factory implements Factory<CommandRouter> {
-  private final Provider<Command> commandProvider;
+  private final Provider<Map<String, Command>> commandsProvider;
 
-  public CommandRouter_Factory(Provider<Command> commandProvider) {
-    this.commandProvider = commandProvider;
+  public CommandRouter_Factory(Provider<Map<String, Command>> commandsProvider) {
+    this.commandsProvider = commandsProvider;
   }
 
   @Override
   public CommandRouter get() {
-    return new CommandRouter(commandProvider.get());
+    return new CommandRouter(commandsProvider.get());
   }
 
-  public static CommandRouter_Factory create(Provider<Command> commandProvider) {
-    return new CommandRouter_Factory(commandProvider);
+  public static CommandRouter_Factory create(Provider<Map<String, Command>> commandsProvider) {
+    return new CommandRouter_Factory(commandsProvider);
   }
 
-  public static CommandRouter newInstance(Object command) {
-    return new CommandRouter((Command) command);
+  public static CommandRouter newInstance(Map<String, Command> commands) {
+    return new CommandRouter(commands);
   }
 }

@@ -1,5 +1,7 @@
 package dev.dagger;
 
+import com.google.common.collect.ImmutableMap;
+import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated(
@@ -26,9 +28,15 @@ public final class DaggerCommandRouterFactory implements CommandRouterFactory {
   private LoginCommand getLoginCommand() {
     return new LoginCommand(SystemOutModule_TextOutputterFactory.textOutputter());}
 
+  private HelloWorldCommand getHelloWorldCommand() {
+    return new HelloWorldCommand(SystemOutModule_TextOutputterFactory.textOutputter());}
+
+  private Map<String, Command> getMapOfStringAndCommand() {
+    return ImmutableMap.<String, Command>of("login", getLoginCommand(), "hello", getHelloWorldCommand());}
+
   @Override
   public CommandRouter router() {
-    return new CommandRouter(getLoginCommand());}
+    return new CommandRouter(getMapOfStringAndCommand());}
 
   public static final class Builder {
     private Builder() {

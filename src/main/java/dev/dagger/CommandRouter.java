@@ -2,18 +2,20 @@ package dev.dagger;
 
 import dev.dagger.Command.Status;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 
 public class CommandRouter {
 
-    private final Map<String, Command> commands = new HashMap<>();
+    private final Map<String, Command> commands;
 
     @Inject
-    public CommandRouter(Command command) {
-        commands.put(command.key(), command);
+    public CommandRouter(Map<String, Command> commands) {
+        // This map contains:
+        // "hello" -> HelloWorldCommand
+        // "login" -> LoginCommand
+        this.commands = commands;
     }
 
     Status route(String input) {
