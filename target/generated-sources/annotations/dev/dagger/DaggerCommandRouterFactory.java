@@ -23,12 +23,12 @@ public final class DaggerCommandRouterFactory implements CommandRouterFactory {
     return new Builder().build();
   }
 
-  private HelloWorldCommand getHelloWorldCommand() {
-    return new HelloWorldCommand(SystemOutModule_TextOutputterFactory.textOutputter());}
+  private LoginCommand getLoginCommand() {
+    return new LoginCommand(SystemOutModule_TextOutputterFactory.textOutputter());}
 
   @Override
   public CommandRouter router() {
-    return new CommandRouter(getHelloWorldCommand());}
+    return new CommandRouter(getLoginCommand());}
 
   public static final class Builder {
     private Builder() {
