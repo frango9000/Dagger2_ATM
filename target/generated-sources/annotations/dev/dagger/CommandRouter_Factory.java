@@ -2,6 +2,7 @@ package dev.dagger;
 
 import dagger.internal.Factory;
 import javax.annotation.Generated;
+import javax.inject.Provider;
 
 @Generated(
     value = "dagger.internal.codegen.ComponentProcessor",
@@ -12,18 +13,22 @@ import javax.annotation.Generated;
     "rawtypes"
 })
 public final class CommandRouter_Factory implements Factory<CommandRouter> {
-  private static final CommandRouter_Factory INSTANCE = new CommandRouter_Factory();
+  private final Provider<Command> commandProvider;
+
+  public CommandRouter_Factory(Provider<Command> commandProvider) {
+    this.commandProvider = commandProvider;
+  }
 
   @Override
   public CommandRouter get() {
-    return new CommandRouter();
+    return new CommandRouter(commandProvider.get());
   }
 
-  public static CommandRouter_Factory create() {
-    return INSTANCE;
+  public static CommandRouter_Factory create(Provider<Command> commandProvider) {
+    return new CommandRouter_Factory(commandProvider);
   }
 
-  public static CommandRouter newInstance() {
-    return new CommandRouter();
+  public static CommandRouter newInstance(Object command) {
+    return new CommandRouter((Command) command);
   }
 }

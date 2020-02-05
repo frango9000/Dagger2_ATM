@@ -2,6 +2,7 @@ package dev.dagger;
 
 import dagger.internal.Factory;
 import javax.annotation.Generated;
+import javax.inject.Provider;
 
 @Generated(
     value = "dagger.internal.codegen.ComponentProcessor",
@@ -12,18 +13,22 @@ import javax.annotation.Generated;
     "rawtypes"
 })
 public final class HelloWorldCommand_Factory implements Factory<HelloWorldCommand> {
-  private static final HelloWorldCommand_Factory INSTANCE = new HelloWorldCommand_Factory();
+  private final Provider<Outputter> outputterProvider;
+
+  public HelloWorldCommand_Factory(Provider<Outputter> outputterProvider) {
+    this.outputterProvider = outputterProvider;
+  }
 
   @Override
   public HelloWorldCommand get() {
-    return new HelloWorldCommand();
+    return new HelloWorldCommand(outputterProvider.get());
   }
 
-  public static HelloWorldCommand_Factory create() {
-    return INSTANCE;
+  public static HelloWorldCommand_Factory create(Provider<Outputter> outputterProvider) {
+    return new HelloWorldCommand_Factory(outputterProvider);
   }
 
-  public static HelloWorldCommand newInstance() {
-    return new HelloWorldCommand();
+  public static HelloWorldCommand newInstance(Object outputter) {
+    return new HelloWorldCommand((Outputter) outputter);
   }
 }
